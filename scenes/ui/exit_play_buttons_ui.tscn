@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1b12m6kvj4e7"]
+
+[ext_resource type="Script" uid="uid://qsnew3mc5xny" path="res://scripts/ui/exit_play_buttons_ui.gd" id="1_se0di"]
+
+[node name="ExitPlayButtonsUi" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_se0di")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+text = "Play again"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

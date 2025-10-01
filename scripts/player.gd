@@ -1,7 +1,10 @@
 extends CharacterBody2D
+class_name Player
 
 const SPEED = 100.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+var is_alive: bool = true
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("exit"):

@@ -10,17 +10,26 @@ config_version=5
 
 [application]
 
-config/name="dungeon_game"
-run/main_scene="uid://chq5f44507ndj"
+config/name="dungeon-game"
+run/main_scene="uid://de2mdl7i17wua"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+GlobalVariables="*res://scripts/global_variables.gd"
 
 [file_customization]
 
 folder_colors={
 "res://assets/": "red",
+"res://resources/": "yellow",
 "res://scenes/": "blue",
 "res://scripts/": "green"
 }
+
+[global_group]
+
+player=""
 
 [input]
 
