@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d06r13fjo0tjf"]
+
+[ext_resource type="Script" uid="uid://bps8dqij7voj" path="res://scripts/map_generator.gd" id="1_qw5ad"]
+[ext_resource type="TileSet" uid="uid://e8fbk8on8ay2" path="res://scenes/tileset.tres" id="2_g3i74"]
+
+[node name="MapGenerator" type="Node"]
+script = ExtResource("1_qw5ad")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_g3i74")
