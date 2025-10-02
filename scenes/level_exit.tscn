@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvabn"]
 size = Vector2(16, 16)
 
-[node name="LevelExit" type="Area2D"]
+[node name="LevelExit" type="Area2D" groups=["level_exit", "persist"]]
+collision_layer = 16
 script = ExtResource("1_3xln6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

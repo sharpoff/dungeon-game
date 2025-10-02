@@ -1,0 +1,213 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxoddvf7x0enf"]
+
+[ext_resource type="Texture2D" uid="uid://c6p3c3adviw0v" path="res://assets/menu_bg.jpg" id="1_0jda6"]
+[ext_resource type="Script" uid="uid://3tlog3jnygln" path="res://scripts/ui/menu_ui.gd" id="1_c7ajr"]
+[ext_resource type="Texture2D" uid="uid://dceokat6jbqjb" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_w.png" id="3_44wi2"]
+[ext_resource type="Texture2D" uid="uid://dbwbhb2fbop60" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_a.png" id="4_w735g"]
+[ext_resource type="Texture2D" uid="uid://ykw4emf546ms" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_s.png" id="5_de0uw"]
+[ext_resource type="Texture2D" uid="uid://bu8cfa0tpbos2" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_d.png" id="6_de0uw"]
+[ext_resource type="Texture2D" uid="uid://csa8b5m4jhqca" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_e.png" id="7_kbk5f"]
+[ext_resource type="Texture2D" uid="uid://1cp4nbm17vk4" path="res://assets/kenney_input/Keyboard & Mouse/Double/keyboard_escape.png" id="8_rnaui"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mky7m"]
+font_size = 70
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_de0uw"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_rnaui"]
+font_size = 30
+
+[node name="MenuUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7ajr")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main"]
+modulate = Color(0.21176471, 0.21176471, 0.34509805, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0jda6")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="Label" type="Label" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dungeon"
+label_settings = SubResource("LabelSettings_mky7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="Play" type="Button" parent="Main/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="Exit" type="Button" parent="Main/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Controls" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011087579, 0.011087579, 0.011087577, 1)
+
+[node name="Movement1" type="HBoxContainer" parent="Controls"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 208.0
+offset_right = 441.0
+offset_bottom = 276.0
+
+[node name="W_key" type="TextureRect" parent="Controls/Movement1"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_44wi2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Movement2" type="HBoxContainer" parent="Controls"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 268.0
+offset_right = 510.0
+offset_bottom = 336.0
+
+[node name="A_key" type="TextureRect" parent="Controls/Movement2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_w735g")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="S_key" type="TextureRect" parent="Controls/Movement2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_de0uw")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="D_key" type="TextureRect" parent="Controls/Movement2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_de0uw")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Dash" type="HBoxContainer" parent="Controls"]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 372.0
+offset_right = 515.0
+offset_bottom = 440.0
+
+[node name="E_key" type="TextureRect" parent="Controls/Dash"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_kbk5f")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Controls/Dash"]
+layout_mode = 2
+text = "- Dash"
+label_settings = SubResource("LabelSettings_de0uw")
+
+[node name="Exit" type="HBoxContainer" parent="Controls"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 469.0
+offset_right = 649.5
+offset_bottom = 538.0
+
+[node name="Esc_key" type="TextureRect" parent="Controls/Exit"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_rnaui")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Controls/Exit"]
+layout_mode = 2
+text = "- Exit"
+label_settings = SubResource("LabelSettings_de0uw")
+
+[node name="MovementLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 233.0
+offset_right = 808.0
+offset_bottom = 302.0
+text = "- Movement"
+label_settings = SubResource("LabelSettings_de0uw")
+
+[node name="ContinueLabel" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 761.0
+offset_top = 558.0
+offset_right = 1131.0
+offset_bottom = 627.0
+text = "Press any key to continue"
+label_settings = SubResource("LabelSettings_rnaui")
+vertical_alignment = 1
+
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

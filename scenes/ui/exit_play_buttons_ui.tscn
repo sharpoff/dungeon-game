@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://qsnew3mc5xny" path="res://scripts/ui/exit_play_buttons_ui.gd" id="1_se0di"]
 
 [node name="ExitPlayButtonsUi" type="HBoxContainer"]
+theme_override_constants/separation = 15
 alignment = 1
 script = ExtResource("1_se0di")
 
@@ -10,9 +11,9 @@ script = ExtResource("1_se0di")
 layout_mode = 2
 text = "Play again"
 
-[node name="Exit" type="Button" parent="."]
+[node name="ExitToMenu" type="Button" parent="."]
 layout_mode = 2
-text = "Exit"
+text = "Exit to menu"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ExitToMenu" to="." method="_on_exit_pressed"]
