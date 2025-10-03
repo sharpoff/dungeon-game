@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cemaqo3w6axyl"]
+
+[ext_resource type="TileSet" uid="uid://e8fbk8on8ay2" path="res://resources/tileset.tres" id="1_55lsm"]
+[ext_resource type="Script" uid="uid://7f2h0eymh4e3" path="res://scripts/tilemap.gd" id="2_38yc0"]
+
+[node name="TileMapLayer" type="TileMapLayer" groups=["persist", "tilemap"]]
+tile_set = ExtResource("1_55lsm")
+script = ExtResource("2_38yc0")

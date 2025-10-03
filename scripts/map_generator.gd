@@ -1,7 +1,6 @@
 extends Node
 class_name MapGenerator
 
-@export var tile_map: TileMapLayer
 @export var game_manager: GameManager
 
 @export var map_size: Vector2i = Vector2i(40, 40)
@@ -14,9 +13,9 @@ const ROOM_TERRAIN: int = 0
 const EMPTY_ATLAS_TILE = Vector2(8, 7)
 const map_padding = 10 # padding for empty tiles
 
-@onready var tile_size: Vector2i = tile_map.tile_set.tile_size
-var rng = RandomNumberGenerator.new()
+var tile_map: TileMapLayer
 
+var rng = RandomNumberGenerator.new()
 var cells: Array[Vector2i] = []
 
 func clear_map() -> void:
@@ -138,7 +137,7 @@ func _set_terrain_cells() -> void:
 	tile_map.set_cells_terrain_connect(cells, ROOM_TERRAIN_SET, ROOM_TERRAIN)
 
 func _get_cell_global_position(cell: Vector2i) -> Vector2i:
-	return cell * tile_size + tile_size / 2
+	return cell * tile_map.tile_set.tile_size + tile_map.tile_set.tile_size / 2
 
 # randomly create coins on ground tiles
 func create_coins() -> void:

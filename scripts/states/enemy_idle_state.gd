@@ -3,7 +3,6 @@ class_name EnemyIdleState
 
 @export var enemy: Enemy
 
-var game_manager: GameManager
 var player: Player
 
 var move_direciton: Vector2
@@ -31,7 +30,7 @@ func physics_update(_delta: float) -> void:
 	if enemy:
 		enemy.velocity = move_direciton * GlobalVariables.enemy_move_speed
 	
-	if !game_manager.game_ended and player:
+	if !GlobalVariables.game_ended and player:
 		var direction = player.global_position - enemy.global_position
 		if direction.length() < GlobalVariables.enemy_follow_distance:
 			transitioned.emit(self, "follow")

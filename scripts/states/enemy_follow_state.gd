@@ -4,7 +4,6 @@ class_name EnemyFollowState
 @export var enemy: Enemy
 @export var cooldown_timer: Timer
 
-var game_manager: GameManager
 var player: Player
 
 func enter() -> void:
@@ -17,8 +16,10 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	if game_manager.game_ended:
+	if GlobalVariables.game_ended:
+		enemy.velocity = Vector2()
 		transitioned.emit(self, "idle")
+		return
 	
 	var direction = player.global_position - enemy.global_position
 	

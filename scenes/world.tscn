@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://de2mdl7i17wua"]
+[gd_scene load_steps=6 format=3 uid="uid://de2mdl7i17wua"]
 
 [ext_resource type="PackedScene" uid="uid://crprb2a1bm15g" path="res://scenes/game_manager.tscn" id="1_rwgxs"]
-[ext_resource type="TileSet" uid="uid://e8fbk8on8ay2" path="res://resources/tileset.tres" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://d06r13fjo0tjf" path="res://scenes/map_generator.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://b1b12m6kvj4e7" path="res://scenes/ui/exit_play_buttons_ui.tscn" id="5_71j4m"]
 
@@ -13,26 +12,23 @@ font_size = 35
 
 [node name="World" type="Node"]
 
-[node name="MapGenerator" parent="." node_paths=PackedStringArray("tile_map", "game_manager") instance=ExtResource("4_k0juu")]
-tile_map = NodePath("../TileMapLayer")
+[node name="MapGenerator" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("4_k0juu")]
 game_manager = NodePath("../GameManager")
 map_size = Vector2i(40, 20)
 room_min_size = 8
 room_max_size = 11
 room_gen_iterations = 50
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("world", "map_generator", "general_ui", "win_ui", "lose_ui", "loading_screen", "coins_label", "health_label") instance=ExtResource("1_rwgxs")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("world", "map_generator", "general_ui", "win_ui", "lose_ui", "save_found", "loading_screen", "coins_label", "health_label") instance=ExtResource("1_rwgxs")]
 world = NodePath("..")
 map_generator = NodePath("../MapGenerator")
 general_ui = NodePath("../UI/General")
 win_ui = NodePath("../UI/Win")
 lose_ui = NodePath("../UI/Lose")
+save_found = NodePath("../UI/SaveFound")
 loading_screen = NodePath("../UI/LoadingScreen")
 coins_label = NodePath("../UI/General/MarginContainer/VBoxContainer/CoinsLabel")
 health_label = NodePath("../UI/General/MarginContainer/VBoxContainer/HealthLabel")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = ExtResource("3_4wyf3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -60,6 +56,12 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/General/MarginContainer"]
 layout_mode = 2
 
+[node name="SaveExit" type="Button" parent="UI/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Save and exit"
+
 [node name="CoinsLabel" type="Label" parent="UI/General/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Coins: 0"
@@ -71,7 +73,6 @@ text = "Health: 0"
 label_settings = SubResource("LabelSettings_k0juu")
 
 [node name="Win" type="Control" parent="UI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,9 +115,10 @@ text = "Congratulations!
 You win!"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" parent="UI/Win/MarginContainer/VBoxContainer" instance=ExtResource("5_71j4m")]
+[node name="HBoxContainer" parent="UI/Win/MarginContainer/VBoxContainer" node_paths=PackedStringArray("game_manager") instance=ExtResource("5_71j4m")]
 layout_mode = 2
 theme_override_constants/separation = 19
+game_manager = NodePath("../../../../../GameManager")
 
 [node name="Lose" type="Control" parent="UI"]
 visible = false
@@ -161,11 +163,71 @@ size_flags_horizontal = 4
 text = "Game over"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" parent="UI/Lose/MarginContainer/VBoxContainer" instance=ExtResource("5_71j4m")]
+[node name="HBoxContainer" parent="UI/Lose/MarginContainer/VBoxContainer" node_paths=PackedStringArray("game_manager") instance=ExtResource("5_71j4m")]
 layout_mode = 2
 theme_override_constants/separation = 20
+game_manager = NodePath("../../../../../GameManager")
+
+[node name="SaveFound" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/SaveFound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/SaveFound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SaveFound/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/SaveFound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save file found. Would you like to load it?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/SaveFound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Load" type="Button" parent="UI/SaveFound/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Load"
+
+[node name="NewSave" type="Button" parent="UI/SaveFound/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "New save"
 
 [node name="LoadingScreen" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,3 +264,7 @@ text = "Loading..."
 label_settings = SubResource("LabelSettings_71j4m")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="UI/General/MarginContainer/VBoxContainer/SaveExit" to="GameManager" method="_on_save_exit_pressed"]
+[connection signal="pressed" from="UI/SaveFound/MarginContainer/VBoxContainer/HBoxContainer/Load" to="GameManager" method="_on_load_pressed"]
+[connection signal="pressed" from="UI/SaveFound/MarginContainer/VBoxContainer/HBoxContainer/NewSave" to="GameManager" method="_on_new_save_pressed"]

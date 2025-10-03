@@ -24,3 +24,7 @@ const player_max_health: float = 100.0
 const player_dash_cooldown: float = 1.0
 const player_dash_time: float = 0.25
 const player_invincible_time: float = 1.1
+
+# Game state
+var game_ended: bool = false
+var coins_collected: int = 0

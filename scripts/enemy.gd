@@ -2,17 +2,12 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var debug_state_label: Label = $DebugStateLabel
 
-var game_manager: GameManager
 var animation_direction: String = "right"
-
-func _ready() -> void:
-	$StateMachine/Idle.game_manager = game_manager
-	$StateMachine/Follow.game_manager = game_manager
+var load_priority: String = "low"
 
 func _process(_delta: float) -> void:
-	debug_state_label.text = $StateMachine.current_state.name
+	$DebugStateLabel.text = $StateMachine.current_state.name
 	
 	if !animation_player.is_playing() and !velocity:
 		animation_player.play("idle_" + animation_direction)
@@ -37,3 +32,21 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func play_attack_sound() -> void:
 	SoundManager.sword_sound.play()
+
+func save() -> Dictionary:
+	var save_dict = {
+		"filename": scene_file_path,
+		"parent": get_parent().get_path(),
+		"pos_x": position.x,
+		"pos_y": position.y,
+		"load_priority": load_priority,
+		"version": 1,
+	}
+	return save_dict
+
+func load_game(data: Dictionary, _game_manager: GameManager) -> void:
+	if data.is_empty():
+		print_debug("failed to load_game() - data is empty.")
+		return
+	
+	position = Vector2(data["pos_x"], data["pos_y"])

@@ -35,6 +35,7 @@ enemy=""
 coin=""
 level_exit=""
 persist=""
+tilemap=""
 
 [input]
 

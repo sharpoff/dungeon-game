@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://i13tg8aj04qr"]
+[gd_scene load_steps=7 format=3 uid="uid://i13tg8aj04qr"]
 
-[ext_resource type="Script" uid="uid://qrufmkptmpwd" path="res://scripts/sound_manager.gd" id="1_gbdfy"]
+[ext_resource type="Script" uid="uid://bgwkyhf8fxlvn" path="res://scripts/sound_manager.gd" id="1_gbdfy"]
 [ext_resource type="AudioStream" uid="uid://elqtbqwyjf2g" path="res://assets/sounds/dash.ogg" id="2_s6peo"]
 [ext_resource type="AudioStream" uid="uid://bj0oilnxw6fh" path="res://assets/sounds/sword_hit.wav" id="3_shlr6"]
 [ext_resource type="AudioStream" uid="uid://b6xwkn8ek6jxo" path="res://assets/sounds/coin_pickup.wav" id="4_5lwbd"]
 [ext_resource type="AudioStream" uid="uid://ylbgdl1oc03e" path="res://assets/sounds/hatch_open.wav" id="5_ro3ww"]
 [ext_resource type="AudioStream" uid="uid://camfueqfl1fxx" path="res://assets/sounds/damage_noise.wav" id="6_mpi5b"]
-[ext_resource type="AudioStream" uid="uid://ca62pcw7p4dk3" path="res://assets/sounds/8-bit-music-loop.wav" id="6_v1pt3"]
 
 [node name="SoundManager" type="Node2D"]
 script = ExtResource("1_gbdfy")
@@ -30,8 +29,3 @@ volume_db = -20.0
 [node name="PlayerDamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_mpi5b")
 volume_db = -18.0
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_v1pt3")
-volume_db = -20.0
-autoplay = true
