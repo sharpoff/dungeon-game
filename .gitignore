@@ -4,3 +4,5 @@
 
 .cache/
 .vscode/
+release/
+export_presets.cfg

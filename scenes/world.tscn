@@ -73,6 +73,7 @@ text = "Health: 0"
 label_settings = SubResource("LabelSettings_k0juu")
 
 [node name="Win" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,7 +228,6 @@ size_flags_horizontal = 8
 text = "New save"
 
 [node name="LoadingScreen" type="Control" parent="UI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
